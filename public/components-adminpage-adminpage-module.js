@@ -759,7 +759,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrap-container\">\n  <div class=\"content\">\n    <div class=\"block block-summary\">\n      <div class=\"block block-title block-under-line\" style=\"width:100%; justify-content: flex-start;\">\n        <h3 class=\"title md-size\">Thông Tin User</h3>\n      </div>\n      <div class=\"block flex-row\" style=\"align-items: flex-start; margin-top: 10px;\">\n        <div class=\"block block-list box-shadow-arround \" style=\"padding: 10px; width: 65%;\">\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">ID</p>\n              <p class=\"label text-normal\">9347349</p>\n            </div>\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">Full Name</p>\n              <input type=\"text\" class=\"text-center\" name=\"fullname\" value=\"Administrator\" [readonly]=\"readonly\">\n            </div>\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">Email</p>\n              <input type=\"email\" class=\"text-center\" name=\"email\" value=\"admin@support.com\" [readonly]=\"readonly\">\n            </div>\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">Address</p>\n              <input type=\"text\" class=\"text-center\" name=\"address\" value=\"499 Trần Hưng Đạo, Phường Cầu Kho, Quận 1, TP Hồ Chí Minh\" [readonly]=\"readonly\">\n            </div>\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">Phone</p>\n              <input type=\"text\" class=\"text-center\" name=\"phone\" value=\"0907989977\"  [readonly]=\"readonly\">\n            </div>\n            <div class=\"form-group flex-row\">\n              <button class=\"btn btn-cancel\" (click)=\"handle_cancel()\" *ngIf=\"!readonly\">CANCEL</button>\n              <button class=\"btn btn-save\" (click)=\"handle_edit()\" *ngIf=\"readonly\">EDIT</button>\n              <button class=\"btn btn-save\" (click)=\"handle_update()\" *ngIf=\"!readonly\">UPDATE</button>\n            </div>\n        </div>\n        <div class=\"block block-list box-shadow-arround \" style=\"padding: 10px; width: 33%;\">\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">ID</p>\n            <p class=\"label text-normal\">9347349</p>\n          </div>\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">Full Name</p>\n            <p class=\"label text-normal\">9347349</p>\n          </div>\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">Email</p>\n            <p class=\"label text-normal\">9347349</p>\n          </div>\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">Address</p>\n            <p class=\"label text-normal\">9347349</p>\n          </div>\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">Phone</p>\n            <p class=\"label text-normal\">9347349</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"wrap-container\">\n  <div class=\"content\">\n    <div class=\"block block-summary\">\n      <div class=\"block block-title block-under-line\" style=\"width:100%; justify-content: flex-start;\">\n        <h3 class=\"title md-size\">Thông Tin User</h3>\n      </div>\n      <div class=\"block flex-row\" style=\"align-items: flex-start; margin-top: 10px;\">\n        <div class=\"block block-list box-shadow-arround \" style=\"padding: 10px; width: 65%;\">\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">ID</p>\n              <p class=\"label text-normal\">{{current_user._id}}</p>\n            </div>\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">Full Name</p>\n              <input type=\"text\" class=\"text-center\" name=\"fullname\" [(ngModel)]=\"current_user.full_name\" [readonly]=\"readonly\">\n            </div>\n            <div class=\"form-group flex-row\">\n              <p class=\"label text-normal\">Email</p>\n              <input type=\"email\" class=\"text-center\" name=\"email\" [(ngModel)]=\"current_user.email\" [readonly]=\"readonly\">\n            </div>\n            <div class=\"form-group flex-row\">\n              <button class=\"btn btn-cancel\" (click)=\"handle_cancel()\" *ngIf=\"!readonly\">CANCEL</button>\n              <button class=\"btn btn-save\" (click)=\"handle_edit()\" *ngIf=\"readonly\">EDIT</button>\n              <button class=\"btn btn-save\" (click)=\"handle_update()\" *ngIf=\"!readonly\">UPDATE</button>\n            </div>\n        </div>\n        <div class=\"block block-list box-shadow-arround \" style=\"padding: 10px; width: 33%;\">\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">ID</p>\n            <p class=\"label text-normal\">{{current_user._id}}</p>\n          </div>\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">Full Name</p>\n            <p class=\"label text-normal\">{{current_user.full_name}}</p>\n          </div>\n          <div class=\"form-group flex-row\">\n            <p class=\"label text-normal\">Email</p>\n            <p class=\"label text-normal\">{{current_user.email}}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -775,19 +775,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InforuserpageComponent", function() { return InforuserpageComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/models/User */ "./src/app/models/User.ts");
+/* harmony import */ var _issue_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../issue.service */ "./src/app/issue.service.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/ngx-cookie-service.es5.js");
+
+
+
 
 
 var InforuserpageComponent = /** @class */ (function () {
-    function InforuserpageComponent() {
+    function InforuserpageComponent(issueService, cookie) {
+        this.issueService = issueService;
+        this.cookie = cookie;
         this.readonly = true;
+        this.current_user = new src_app_models_User__WEBPACK_IMPORTED_MODULE_2__["User"]();
     }
     InforuserpageComponent.prototype.ngOnInit = function () {
+        this.handle_get_info();
+    };
+    InforuserpageComponent.prototype.handle_get_info = function () {
+        var _this = this;
+        var id_user = this.cookie.get("_id");
+        this.issueService.getUserById(id_user).subscribe(function (issue) {
+            _this.current_user = issue["user"];
+        });
     };
     InforuserpageComponent.prototype.handle_edit = function () {
         this.readonly = false;
     };
     InforuserpageComponent.prototype.handle_update = function () {
         this.readonly = true;
+        var id_user = this.cookie.get("_id");
+        this.issueService.handle_update_user(id_user, this.current_user).subscribe(function (issue) {
+            console.log(issue);
+        });
     };
     InforuserpageComponent.prototype.handle_cancel = function () {
         this.readonly = true;
@@ -798,7 +819,7 @@ var InforuserpageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./inforuserpage.component.html */ "./src/app/components/inforuserpage/inforuserpage.component.html"),
             styles: [__webpack_require__(/*! ./inforuserpage.component.css */ "./src/app/components/inforuserpage/inforuserpage.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_issue_service__WEBPACK_IMPORTED_MODULE_3__["IssueService"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__["CookieService"]])
     ], InforuserpageComponent);
     return InforuserpageComponent;
 }());

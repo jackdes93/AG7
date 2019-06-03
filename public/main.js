@@ -280,24 +280,26 @@ var AdminpageComponent = /** @class */ (function () {
     }
     AdminpageComponent.prototype.ngOnInit = function () {
         this.token = this.cookieService.get('access_token');
+        if (this.router.navigate(['/admin'])) {
+            return this.router.navigate(['/admin/dashboard']);
+        }
         this.check_is_login();
     };
     AdminpageComponent.prototype.check_is_login = function () {
         var _this = this;
-        if (this.token.length == 0) {
+        if (this.token.length < 0) {
             this.router.navigate(['/login']);
         }
         else {
             this.issueService.verify_token(this.token).subscribe(function (issue) {
                 if (issue['state']) {
                     _this.user = _this.cookieService.get('full_name');
-                    console.log(_this.user);
                     return _this.router.navigate(['/admin/dashboard']);
                 }
                 else {
                     _this.cookieService.delete('access_token');
+                    return _this.router.navigate(['/login']);
                 }
-                return _this.router.navigate(['/login']);
             });
         }
     };
@@ -573,8 +575,18 @@ var LoginComponent = /** @class */ (function () {
         };
     }
     LoginComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (this.cookieService.get('access_token').length > 0) {
-            this.router.navigate(['/admin/dashboard']);
+            this.issueService.verify_token(this.token).subscribe(function (issue) {
+                if (issue['state']) {
+                    return _this.router.navigate(['/admin/dashboard']);
+                }
+                else {
+                    _this.cookieService.delete('access_token');
+                    return _this.router.navigate(['/login']);
+                }
+            });
+            return this.router.navigate(['/login']);
         }
     };
     LoginComponent.prototype.SignIn = function () {
@@ -585,7 +597,6 @@ var LoginComponent = /** @class */ (function () {
                     _this.cookieService.set("access_token", issue["token"], 0.02);
                     _this.cookieService.set("full_name", issue["user"].full_name, 0.02);
                     _this.cookieService.set("_id", issue["user"]._id, 0.02);
-                    _this.cookieService.set("email", issue["user"].email, 0.02);
                     _this.router.navigate(['/admin/dashboard']);
                 }
             });
@@ -786,6 +797,7 @@ var IssueService = /** @class */ (function () {
     function IssueService(http, issueService) {
         this.http = http;
         this.issueService = issueService;
+        // link_api = 'http://localhost:3000/api/v1';
         this.link_api = '/api/v1';
     }
     IssueService.prototype.verify_token = function (token) {

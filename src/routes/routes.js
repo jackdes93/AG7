@@ -7,19 +7,16 @@ const jwt = require('jsonwebtoken');
 router.use("/devices", routesDevice);
 router.use("/users", routesUser);
 router.get('/check/:token', (req, res, next) => {
-    try {
+    // try {
         const decode = jwt.verify(req.params.token, process.env.SECRET_KEY);
         const d = new Date(0);
         d.setUTCSeconds(decode.exp);
-        if(d > Date.now()) {
+        if(d > Date.now ) {
+            console.log(d);
+            console.log(Date.now);
             return res.status(200).json({'state' : true});
         }
-        return res.status(200).json({'state' : false});
-    }
-    catch(error) {
-        return res.status(500).json(error)
-    }
-    
+        return res.status(403).json({'state' : false, 'error' : decode}); 
 })
 module.exports = router;
 
